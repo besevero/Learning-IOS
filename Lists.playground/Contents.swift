@@ -1,3 +1,3 @@
-import UIKit
+var numbers = [2,3,4,7,11]
 
-var greeting = "Hello, playground"
+print(numbers[0])
