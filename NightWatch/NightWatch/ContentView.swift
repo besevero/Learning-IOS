@@ -8,21 +8,21 @@
 import SwiftUI
 
 let nightlyTasks = [
-    "-Check all windows",
-    "-Check all doors",
-    "-Check the mail box",
-    "-Inspect secutiry cameras",
-    "-Clear ice from sidewalks",
-    "-Document \"strange and unusual\" occurrences"
+    "Check all windows",
+    "Check all doors",
+    "Check the mail box",
+    "Inspect secutiry cameras",
+    "Clear ice from sidewalks",
+    "Document \"strange and unusual\" occurrences"
 ]
 let weeklyTasks = [
-    "-Check inside all vacant rooms",
-    "-Walk the perimeter of property"
+    "Check inside all vacant rooms",
+    "Walk the perimeter of property"
 ]
 let monthlyTasks = [
-    "-Test security alarm",
-    "-Test motion Detectors",
-    "-Test smoke alarms"
+    "Test security alarm",
+    "Test motion Detectors",
+    "Test smoke alarms"
 ]
 struct ContentView: View {
     var body: some View {
@@ -59,7 +59,7 @@ struct ContentView: View {
                         Text(taskName)
                     })
                 }
-            }
+            }.listStyle(GroupedListStyle())
         }
     }
 }
