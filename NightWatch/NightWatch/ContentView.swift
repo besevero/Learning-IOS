@@ -27,40 +27,44 @@ let monthlyTasks = [
 struct ContentView: View {
     var body: some View {
         
-        VStack {
+        NavigationView {
             List{
-                Section(header: HStack{
-                    Image(systemName: "moon.stars")
-                    Text("Nightly Tasks")
-                }
-                .font(.title3)){
+                Section(header: TaskSectionHeader(symbomSystemName: "moon.stars", headerText: "Nightly Tasks")){
                     ForEach(nightlyTasks, id: \.self, content: {
                         taskName in
-                        Text(taskName)
-                    })
+                        NavigationLink(taskName, destination: DetailsView(taskName: taskName))
+                })
                 }
-                Section(header: HStack{
-                    Image(systemName: "sunset")
-                    Text("Weekly Tasks")
-                }
-                .font(.title3)){
+                Section(header: TaskSectionHeader(symbomSystemName: "sunset", headerText: "Weely Tasks")){
                     ForEach(weeklyTasks, id: \.self, content: {
                         taskName in
-                        Text(taskName)
+                        NavigationLink(taskName, destination: DetailsView(taskName: taskName))
+
                     })
                 }
-                Section(header: HStack{
-                    Image(systemName: "calendar")
-                    Text("Monthly Tasks")
-                }
-                .font(.title3)){
+                Section(header: TaskSectionHeader(symbomSystemName: "calendar", headerText: "Monthly Tasks")){
                     ForEach(monthlyTasks, id: \.self, content: {
                         taskName in
-                        Text(taskName)
+                        NavigationLink(taskName, destination: DetailsView(taskName: taskName))
                     })
                 }
-            }.listStyle(GroupedListStyle())
+            }
+            .listStyle(GroupedListStyle())
+            .navigationTitle("Home")
         }
+    }
+}
+
+struct TaskSectionHeader: View {
+    let symbomSystemName: String
+    let headerText: String
+    
+    var body: some View {
+        HStack{
+            Image(systemName: symbomSystemName)
+            Text(headerText)
+        }
+        .font(.title3)
     }
 }
 
