@@ -8,40 +8,37 @@
 import SwiftUI
 
 struct DetailsView: View {
-    let taskName: String
-    @State var theTask = Task(
-        name: "Check all windows",
-        isComplete: false,
-        lastCompleted: nil
-    )
+    let task: Task
+    
     var body: some View {
         VStack {
             HStack{
                 //Checkmark if completed
-                Image(systemName: theTask.isComplete ? "checkmark.square" : "square")
-                Text(theTask.name)
+                Image(systemName: task.isComplete ? "checkmark.square" : "square")
+                Text(task.name)
+                Text("Placeholder for task Description")
+                Text("Placeholder for mark complete button")
+
             }
-            ControlPanel(theTask: self.$theTask)
-            Text("Placeholder for task Description")
-            Text("Placeholder for mark complete button")
-        }
+           // ControlPanel(isComplete: self.$task.isComplete)
+            }
     }
 }
 
 
 struct ControlPanel: View {
-    @Binding var theTask: Task
+    @Binding var isComplete: Bool
     
     var body: some View {
-        if theTask.isComplete == false{
+        if isComplete == false{
             Button(action: {
-                theTask.isComplete = true
+                isComplete = true
             }){
                 Text("Mark Complete")
             }.padding(.top)
         }else{
             Button(action: {
-                theTask.isComplete = false
+                isComplete = false
             }){
                 Text("reset")
             }.padding(.top)
@@ -52,6 +49,12 @@ struct ControlPanel: View {
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View{
-        DetailsView(taskName: "Test Task")
+        DetailsView(
+            task: Task(
+                name :"Test Task",
+                isComplete: false,
+                lastCompleted: nil
+            )
+        )
     }
 }
